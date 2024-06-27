@@ -1,5 +1,4 @@
 fastapi
-shutil
 uvicorn
 pydantic
 joblib
