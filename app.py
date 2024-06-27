@@ -5,10 +5,6 @@ import numpy as np
 
 app = FastAPI()
 
-@app.get("/")
-async def check():
-    return "testfastapi"
-
 # Load the trained model
 model = joblib.load('random_forest_model.pkl')
 
