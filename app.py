@@ -11,6 +11,10 @@ model = joblib.load('random_forest_model.pkl')
 # Initialize the FastAPI app
 app = FastAPI()
 
+@app.get("/")
+async def root():
+    return RedirectResponse(url="/docs#/default/predict_predict_post")
+
 # Define the request body using Pydantic
 class PredictionRequest(BaseModel):
     Temperature_C: float
