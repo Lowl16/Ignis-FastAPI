@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
+import shutil
 import joblib
 import pandas as pd
 
@@ -15,6 +16,15 @@ app = FastAPI()
 @app.get("/")
 async def root():
     return RedirectResponse(url="/docs#/default/predict_predict_post")
+
+@app.get("/disk-usage")
+def get_disk_usage():
+    total, used, free = shutil.disk_usage("/")
+    return JSONResponse(content={
+        "total": total,
+        "used": used,
+        "free": free
+    })
 
 # Define the request body using Pydantic
 class PredictionRequest(BaseModel):
