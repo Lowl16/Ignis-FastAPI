@@ -1,7 +1,10 @@
 from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 import joblib
 import pandas as pd
+
+app = FastAPI()
 
 # Load the trained model
 model = joblib.load('random_forest_model.pkl')
@@ -29,6 +32,10 @@ def predict(request: PredictionRequest):
     prediction = model.predict(df)
     # Return the prediction as JSON
     return {'prediction': int(prediction[0])}
+
+@app.get("/")
+async def root():
+    return RedirectResponse(url="/docs#/default/predict_predict_post")
 
 # Run the app using Uvicorn
 if __name__ == "__main__":
