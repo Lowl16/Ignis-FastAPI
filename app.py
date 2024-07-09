@@ -7,7 +7,7 @@ import pandas as pd
 app = FastAPI()
 
 # Load the trained model
-model = joblib.load('random_forest_model.pkl')
+model = joblib.load('random_forest_resampled_model.pkl')
 
 # Initialize the FastAPI app
 app = FastAPI()
